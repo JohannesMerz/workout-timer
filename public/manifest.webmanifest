@@ -6,9 +6,6 @@
   "scope": "/workout-timer/",
   "start_url": "/workout-timer/",
 
-  "background_color": "#766118",
-  "theme_color": "#f9dc74",
-
   "display": "fullscreen",
 
   "icons": [

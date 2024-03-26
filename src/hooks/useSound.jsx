@@ -18,7 +18,7 @@ export function SoundProvider({ children }) {
 
 export function useSound() {
   const context = useContext(SoundContext);
-  return context.soundApi;
+  return context.soundApi || {};
 }
 
 export function useInitSound() {

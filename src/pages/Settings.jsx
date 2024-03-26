@@ -1,31 +1,19 @@
-import { useWorkoutStore } from '../../model';
-import { Button } from '../atomics/Button';
-import { FiSettings, FiX } from 'react-icons/fi';
-import { useEffect, useState, useRef } from 'react';
+import { FiX } from 'react-icons/fi';
+import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import { Field } from '../atomics/Field';
+import { useWorkoutStore } from '../model';
+import { Field } from '../components/atomics/Field';
+import {
+  Content,
+  ContentSection,
+  Header,
+  HeaderInfo,
+  HeaderNavigation,
+} from '../components/atomics/PageSections';
+import { ButtonLink } from '../components/atomics/ButtonLink';
 
-const SettingsInput = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: calc(100% - 2rem);
-  height: calc(100% - 2rem);
-  margin: 1rem;
-  padding: 1rem;
-  background-color: var(--colorSecondary);
-  border: 2px solid var(--colorPrimary);
-  border-radius: 6px;
-  box-shadow: 0px 0px 4px var(--colorPrimary);
-  z-index: 1000;
+const SettingsContent = styled(Content)`
   gap: 1rem;
-`;
-
-const Header = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 2rem;
 `;
 
 const SettingsField = styled(Field).attrs((props) => ({
@@ -55,8 +43,6 @@ function getInitialInput(settings) {
 export function Settings() {
   const workoutStore = useWorkoutStore();
 
-  const [settingsOpen, setSettingsOpen] = useState(false);
-
   const inputBufferRef = useRef(
     getInitialInput(workoutStore.settings || INITIAL_SETTINGS)
   );
@@ -64,7 +50,6 @@ export function Settings() {
   useEffect(() => {
     if (!workoutStore.settings) {
       workoutStore.setSettings(INITIAL_SETTINGS);
-      setSettingsOpen(true);
     }
   }, [workoutStore]);
 
@@ -88,69 +73,65 @@ export function Settings() {
   const onTimeChange = (fieldName) => (e) => {
     inputBufferRef.current[fieldName] = e.target.value;
     const value = parseInt(e.target.value || '0');
-
     setFieldValue(fieldName, value * 1000);
-  };
-
-  const open = () => {
-    inputBufferRef.current = getInitialInput(
-      workoutStore.settings || INITIAL_SETTINGS
-    );
-    setSettingsOpen(true);
   };
 
   return (
     <>
-      <Button
-        disabled={
-          settingsOpen ||
-          workoutStore.workout.active ||
-          (workoutStore.workout.progressMs && workoutStore.phase.name !== 'end')
-        }
-        onClick={open}
-      >
-        <FiSettings size="28"></FiSettings>
-      </Button>
-      {settingsOpen && (
-        <SettingsInput>
-          <Header>
-            <h2>Settings</h2>
-            <Button onClick={() => setSettingsOpen(false)}>
-              <FiX size="28"></FiX>
-            </Button>
-          </Header>
+      <Header>
+        <HeaderInfo>
+          <h1>Settings</h1>
+        </HeaderInfo>
+        <HeaderNavigation>
+          <ButtonLink to="/workout">
+            <FiX size="28"></FiX>
+          </ButtonLink>
+        </HeaderNavigation>
+      </Header>
+      <SettingsContent>
+        <ContentSection>
           <SettingsField
             label="Rounds:"
             value={inputBufferRef.current.rounds}
             onChange={onCountChange('rounds')}
           ></SettingsField>
+        </ContentSection>
+        <ContentSection>
           <SettingsField
             label="Exercises:"
             value={inputBufferRef.current.exercises}
             onChange={onCountChange('exercises')}
           ></SettingsField>
+        </ContentSection>
+        <ContentSection>
           <SettingsField
             label="Start(s):"
             value={inputBufferRef.current.start}
             onChange={onTimeChange('start')}
           ></SettingsField>
+        </ContentSection>
+        <ContentSection>
           <SettingsField
             label="Work(s):"
             value={inputBufferRef.current.work}
             onChange={onTimeChange('work')}
           ></SettingsField>
+        </ContentSection>
+        <ContentSection>
           <SettingsField
             label="Rest(s):"
             value={inputBufferRef.current.rest}
             onChange={onTimeChange('rest')}
           ></SettingsField>
+        </ContentSection>
+        <ContentSection>
           <SettingsField
             label="Reset(s):"
             value={inputBufferRef.current.roundReset}
             onChange={onTimeChange('roundReset')}
           ></SettingsField>
-        </SettingsInput>
-      )}
+        </ContentSection>
+      </SettingsContent>
     </>
   );
 }

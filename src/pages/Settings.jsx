@@ -16,6 +16,12 @@ const SettingsContent = styled(Content)`
   gap: 1rem;
 `;
 
+const ExitButton = styled(ButtonLink)`
+  color: var(--colorSecondary);
+  background-color: var(--colorPrimary);
+  align-self: flex-end;
+`;
+
 const SettingsField = styled(Field).attrs((props) => ({
   ...props,
   type: 'number',
@@ -80,13 +86,8 @@ export function Settings() {
     <>
       <Header>
         <HeaderInfo>
-          <h1>Settings</h1>
+          <h1>Workout Settings</h1>
         </HeaderInfo>
-        <HeaderNavigation>
-          <ButtonLink to="/workout">
-            <FiX size="28"></FiX>
-          </ButtonLink>
-        </HeaderNavigation>
       </Header>
       <SettingsContent>
         <ContentSection>
@@ -131,6 +132,7 @@ export function Settings() {
             onChange={onTimeChange('roundReset')}
           ></SettingsField>
         </ContentSection>
+        <ExitButton to="/workout">SAVE</ExitButton>
       </SettingsContent>
     </>
   );

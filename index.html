@@ -5,6 +5,7 @@
     <link rel="icon" type="image/svg+xml" href="icon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Workout Timer</title>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link rel="canonical" href="https://johannesmerz.github.io/workout-timer/" />
     <link rel="manifest" href="/workout-timer/manifest.webmanifest">
   </head>
@@ -12,7 +13,8 @@
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
     <script>
-      // if (navigator.serviceWorker) {
+     // auto refresh not enabled yet, as for now you need to close and reopen the app
+     // if (navigator.serviceWorker) {
       //   navigator.serviceWorker.register (
       //     '/workout-timer/sw.js',
       //     {scope: '/workout-timer/'}

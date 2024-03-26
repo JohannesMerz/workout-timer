@@ -4,6 +4,7 @@ import {
   createRoutesFromElements,
   Route,
   Navigate,
+  Link,
 } from 'react-router-dom';
 import { ErrorPage } from './pages/ErrorPage';
 import { useWorkoutStore } from './model';
@@ -44,11 +45,7 @@ function App() {
       <Fullscreen>
         <RouterProvider router={router}></RouterProvider>
 
-        <Footer>
-          <FooterSection>
-            <a href={document.location.href}>refresh app</a>
-          </FooterSection>
-        </Footer>
+        <Footer></Footer>
       </Fullscreen>
     </SoundProvider>
   );

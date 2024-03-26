@@ -20,6 +20,11 @@ export const GlobalStyles = createGlobalStyle`
     font-size: 24px;
   }
 
+  html, body {
+    color: var(--colorPrimary);
+    background-color: var(--colorSecondary); 
+  }
+
   h1, h2, h3 {
     text-transform: uppercase;
     margin: 0;

@@ -27,13 +27,16 @@ export const HeaderNavigation = styled.div`
 `;
 
 export const Content = styled.div`
-  width: 100%;
+  border-top: 2px solid var(--colorPrimary);
+
+  width: calc(100% - 4rem);
 
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 4rem;
-  padding: 3rem 2rem;
+  padding: 3rem 0;
+  margin: 0 2rem;
   flex-grow: 1;
 
   @media (min-width: 450px) {

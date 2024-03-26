@@ -1,89 +1,49 @@
-import styled from 'styled-components';
-import { Fullscreen } from '../components/atomics/Fullscreen';
-import { Sounds } from '../components/store-consumers/Sounds';
 import { PhaseProgress } from '../components/store-consumers/PhaseProgress';
 import { WorkoutControls } from '../components/store-consumers/WorkoutControls';
-import { Settings } from '../components/store-consumers/Settings';
+import {
+  Content,
+  ContentSection,
+  Header,
+  HeaderInfo,
+  HeaderNavigation,
+} from '../components/atomics/PageSections';
+import { Sounds } from '../components/store-consumers/Sounds';
 import { useWorkoutStore } from '../model';
-
-const Header = styled.div`
-  width: 100%;
-  display: flex;
-  align-items: center;
-  padding: 2rem 2rem;
-  gap: 6px;
-
-  @media (min-width: 450px) {
-    width: 450px;
-  }
-`;
-
-const HeaderContent = styled.div`
-  flex-grow: 1;
-  display: flex;
-  align-items: center;
-  justify-content: left;
-`;
-
-const Content = styled.div`
-  width: 100%;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4rem;
-  padding: 3rem 2rem;
-  flex-grow: 1;
-
-  @media (min-width: 450px) {
-    width: 450px;
-  }
-`;
-
-const Section = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-`;
-
-const Footer = styled.div`
-  min-height: 40px;
-  width: 100%;
-  background-color: var(--colorPrimary);
-  color: var(--colorSecondary);
-  display: flex;
-  align-items: center;
-`;
+import { Navigate } from 'react-router-dom';
+import { FiSettings } from 'react-icons/fi';
+import { ButtonLink } from '../components/atomics/ButtonLink';
 
 export function Workout() {
   const workoutStore = useWorkoutStore();
 
+  if (!workoutStore.settings) {
+    return <Navigate to="/settings" replace={true} />;
+  }
+
+  const workoutInProgress =
+    workoutStore.workout.progressMs && workoutStore.phase.name !== 'end';
+
   return (
-    <Fullscreen>
+    <>
       <Header>
-        <HeaderContent>
+        <HeaderInfo>
           <h1>Workout Timer</h1>
-        </HeaderContent>
-        <Settings></Settings>
-        <Sounds></Sounds>
+        </HeaderInfo>
+        <HeaderNavigation>
+          <ButtonLink to="/settings" disabled={workoutInProgress}>
+            <FiSettings size="28"></FiSettings>
+          </ButtonLink>
+          <Sounds></Sounds>
+        </HeaderNavigation>
       </Header>
       <Content>
-        {!!workoutStore.settings && (
-          <>
-            <Section>
-              <PhaseProgress></PhaseProgress>
-            </Section>
-            <Section>
-              <WorkoutControls></WorkoutControls>
-            </Section>
-          </>
-        )}
+        <ContentSection>
+          <PhaseProgress></PhaseProgress>
+        </ContentSection>
+        <ContentSection>
+          <WorkoutControls></WorkoutControls>
+        </ContentSection>
       </Content>
-      <Footer>
-        <Section>
-          <a href={document.location.href}>refresh app</a>
-        </Section>
-      </Footer>
-    </Fullscreen>
+    </>
   );
 }

@@ -3,24 +3,34 @@ import {
   RouterProvider,
   createRoutesFromElements,
   Route,
-  Navigate,
 } from 'react-router-dom';
-import { ErrorPage } from './components/ErrorPage';
-import { homeRoutes } from './apps/home/routes';
-import { intervalTimerRoutes } from './apps/interval-timer/routes';
+import { ErrorPage } from './pages/ErrorPage';
+import { useWorkoutStore } from './model';
+import { SoundProvider } from './hooks/useSound';
+import { GlobalStyles } from './Theme';
+import { Workout } from './pages/Workout';
 
 const router = createHashRouter(
   createRoutesFromElements(
-    <Route path="/" errorElement={<ErrorPage />}>
-      <Route path="home">{homeRoutes}</Route>
-      <Route path="interval-timer">{intervalTimerRoutes}</Route>
-      <Route index element={<Navigate to="/home" replace />} />
-    </Route>
+    <Route
+      path="/"
+      errorElement={<ErrorPage />}
+      element={<Workout></Workout>}
+    ></Route>
   )
 );
 
 function App() {
-  return <RouterProvider router={router} />;
+  const workoutStore = useWorkoutStore();
+
+  return (
+    <SoundProvider>
+      <GlobalStyles
+        $variant={workoutStore.phase?.name || 'start'}
+      ></GlobalStyles>
+      <RouterProvider router={router}></RouterProvider>
+    </SoundProvider>
+  );
 }
 
 export default App;

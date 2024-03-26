@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Fullscreen } from '../components/atomics/Fullscreen';
 import { Sounds } from '../components/store-consumers/Sounds';
@@ -81,9 +80,7 @@ export function Workout() {
         )}
       </Content>
       <Footer>
-        <Section>
-          <Link to="/">Home</Link>
-        </Section>
+        <Section>{/* <Link to="/">Home</Link> */}</Section>
       </Footer>
     </Fullscreen>
   );

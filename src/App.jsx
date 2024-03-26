@@ -4,7 +4,6 @@ import {
   createRoutesFromElements,
   Route,
   Navigate,
-  Link,
 } from 'react-router-dom';
 import { ErrorPage } from './pages/ErrorPage';
 import { useWorkoutStore } from './model';
@@ -12,7 +11,7 @@ import { SoundProvider } from './hooks/useSound';
 import { GlobalStyles } from './Theme';
 import { Workout } from './pages/Workout';
 import { Fullscreen } from './components/atomics/Fullscreen';
-import { Footer, FooterSection } from './components/atomics/PageSections';
+import { Footer } from './components/atomics/PageSections';
 import { Settings } from './pages/Settings';
 
 function AppRedirect() {

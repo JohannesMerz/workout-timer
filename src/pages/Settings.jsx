@@ -1,4 +1,3 @@
-import { FiX } from 'react-icons/fi';
 import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { useWorkoutStore } from '../model';
@@ -8,7 +7,6 @@ import {
   ContentSection,
   Header,
   HeaderInfo,
-  HeaderNavigation,
 } from '../components/atomics/PageSections';
 import { ButtonLink } from '../components/atomics/ButtonLink';
 
@@ -19,7 +17,7 @@ const SettingsContent = styled(Content)`
 const ExitButton = styled(ButtonLink)`
   color: var(--colorSecondary);
   background-color: var(--colorPrimary);
-  align-self: flex-end;
+  margin-top: 3rem;
 `;
 
 const SettingsField = styled(Field).attrs((props) => ({

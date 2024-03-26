@@ -1,4 +1,3 @@
-import { FiX } from 'react-icons/fi';
 import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { useWorkoutStore } from '../model';
@@ -8,12 +7,17 @@ import {
   ContentSection,
   Header,
   HeaderInfo,
-  HeaderNavigation,
 } from '../components/atomics/PageSections';
 import { ButtonLink } from '../components/atomics/ButtonLink';
 
 const SettingsContent = styled(Content)`
   gap: 1rem;
+`;
+
+const ExitButton = styled(ButtonLink)`
+  color: var(--colorSecondary);
+  background-color: var(--colorPrimary);
+  margin-top: 3rem;
 `;
 
 const SettingsField = styled(Field).attrs((props) => ({
@@ -80,13 +84,8 @@ export function Settings() {
     <>
       <Header>
         <HeaderInfo>
-          <h1>Settings</h1>
+          <h1>Workout Settings</h1>
         </HeaderInfo>
-        <HeaderNavigation>
-          <ButtonLink to="/workout">
-            <FiX size="28"></FiX>
-          </ButtonLink>
-        </HeaderNavigation>
       </Header>
       <SettingsContent>
         <ContentSection>
@@ -131,6 +130,7 @@ export function Settings() {
             onChange={onTimeChange('roundReset')}
           ></SettingsField>
         </ContentSection>
+        <ExitButton to="/workout">SAVE</ExitButton>
       </SettingsContent>
     </>
   );

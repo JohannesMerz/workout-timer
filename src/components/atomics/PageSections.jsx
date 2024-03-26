@@ -47,7 +47,6 @@ export const Content = styled.div`
 export const ContentSection = styled.div`
   width: 100%;
   display: flex;
-  justify-content: center;
 `;
 
 export const Footer = styled.div`

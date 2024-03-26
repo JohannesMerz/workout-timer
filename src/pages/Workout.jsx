@@ -62,7 +62,7 @@ export function Workout() {
     <Fullscreen>
       <Header>
         <HeaderContent>
-          <h1>Workout Timer 2</h1>
+          <h1>Workout Timer</h1>
         </HeaderContent>
         <Settings></Settings>
         <Sounds></Sounds>
@@ -80,7 +80,9 @@ export function Workout() {
         )}
       </Content>
       <Footer>
-        <Section>{/* <Link to="/">Home</Link> */}</Section>
+        <Section>
+          <a href={document.location.href}>refresh app</a>
+        </Section>
       </Footer>
     </Fullscreen>
   );

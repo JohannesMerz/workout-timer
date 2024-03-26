@@ -62,7 +62,7 @@ export function Workout() {
     <Fullscreen>
       <Header>
         <HeaderContent>
-          <h1>Workout Timer 1</h1>
+          <h1>Workout Timer 2</h1>
         </HeaderContent>
         <Settings></Settings>
         <Sounds></Sounds>

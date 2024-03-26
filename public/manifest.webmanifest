@@ -1,0 +1,21 @@
+{
+  "name": "Workout Timer",
+  "short_name": "WOT",
+  "description": "Guides you through your workout!",
+
+  "scope": "/workout-timer/",
+  "start_url": "/workout-timer/",
+
+  "background_color": "#766118",
+  "theme_color": "#f9dc74",
+
+  "display": "fullscreen",
+
+  "icons": [
+    {
+      "src": "/github-page-pwa/icon-large.svg",
+      "type": "image/svg",
+      "sizes": "700x700"
+    }
+  ]
+}

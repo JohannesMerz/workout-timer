@@ -45,7 +45,9 @@ export function WorkoutControls() {
       {!workoutStore.workout.active && (
         <Button
           onClick={
-            workoutStore.workout.progressMs ? workoutStore.resumeWorkout : start
+            workoutStore.workout.progressMs && workoutStore.phase.name !== 'end'
+              ? workoutStore.resumeWorkout
+              : start
           }
         >
           <FiPlay size={size}></FiPlay>

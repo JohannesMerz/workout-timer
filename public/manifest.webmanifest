@@ -8,8 +8,6 @@
 
   "display": "fullscreen",
 
-  "theme_color": "#f9dc74",
-
   "icons": [
     {
       "src": "/github-page-pwa/icon-large.svg",
